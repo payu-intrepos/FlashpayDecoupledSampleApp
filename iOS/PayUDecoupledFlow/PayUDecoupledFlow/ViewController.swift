@@ -48,13 +48,13 @@ class ViewController: UIViewController, PayU3DS2Delegate {
     /// Reads the merchant key from the UI field, falls back to the default if empty.
     var key: String {
         let v = keyField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return v.isEmpty ? "smsplus" : v
+        return v.isEmpty ? "<use your key>" : v
     }
 
     /// Reads the salt from the UI field, falls back to the default if empty.
     var salt: String {
         let v = saltField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return v.isEmpty ? "izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD" : v
+        return v.isEmpty ? "<use your salt>" : v
     }
 
     let requestId = "\(Int(Date().timeIntervalSince1970))"

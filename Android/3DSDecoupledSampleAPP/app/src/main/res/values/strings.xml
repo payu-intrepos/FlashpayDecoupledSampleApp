@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">3DS Decoupled Sample APP</string>
+    <string-array name="card_schemes">
+        <item>VISA</item>
+        <item>MASTERCARD</item>
+    </string-array>
+</resources>

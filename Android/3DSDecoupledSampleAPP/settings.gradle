@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        maven {url  "https://central.sonatype.com/repository/maven-snapshots/"}
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs("${rootDir}/app/libs")
+        }
+        maven {url  "https://central.sonatype.com/repository/maven-snapshots/"}
+    }
+}
+
+rootProject.name = "3DS Decoupled  Sample APP"
+include ':app'

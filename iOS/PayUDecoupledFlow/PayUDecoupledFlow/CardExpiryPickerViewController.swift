@@ -46,7 +46,7 @@ final class CardExpiryPickerViewController: UIViewController {
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.prominent, target: self, action: #selector(doneTapped))
+        let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTapped))
         toolbar.items = [cancel, flex, done]
         view.addSubview(toolbar)
     }

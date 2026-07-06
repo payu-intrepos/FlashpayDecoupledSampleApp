@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- PayU brand -->
+    <color name="colorPrimary">#053bc1</color>
+    <color name="colorPrimaryDark">#03288a</color>
+    <color name="colorAccent">#053bc1</color>
+    <color name="colorPrimaryLight">#3d65d4</color>
+
+    <!-- UI surface -->
+    <color name="colorBackground">#F0F4F8</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorStatusBar">#03288a</color>
+    <color name="colorAppBar">#0F172A</color>
+    <color name="colorAppBarAccent">#053bc1</color>
+
+    <!-- Input fields -->
+    <color name="colorInputStroke">#CBD5E1</color>
+    <color name="colorInputHint">#94A3B8</color>
+    <color name="colorInputText">#0F172A</color>
+    <color name="colorSectionLabel">#475569</color>
+
+    <!-- Section accent bars -->
+    <color name="colorSectionMerchant">#053bc1</color>
+    <color name="colorSectionCustomer">#3d65d4</color>
+    <color name="colorSectionCard">#053bc1</color>
+
+    <!-- Loading overlay -->
+    <color name="colorOverlayBg">#E60F172A</color>
+    <color name="colorOverlaySurface">#1E293B</color>
+    <color name="colorProgressTint">#053bc1</color>
+</resources>
