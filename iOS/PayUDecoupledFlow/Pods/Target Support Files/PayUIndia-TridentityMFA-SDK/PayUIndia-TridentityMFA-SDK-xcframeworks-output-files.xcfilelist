@@ -1,0 +1,2 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/PayUIndia-TridentityMFA-SDK/PayUTridentityMFAKit.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/PayUIndia-TridentityMFA-SDK/PayUliboqs.framework

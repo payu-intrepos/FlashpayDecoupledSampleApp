@@ -1,0 +1,123 @@
+{
+    "uiCustomization": {
+        "processingCircleColor": "#66676b",
+        "buttonCustomization": {
+            "primaryButtonCustomization": {
+                "disabledBackgroundColor": "#9e9e9d",
+                "disabledTextColor": "#FFFFFF",
+                "enabledBackgroundColor": "#F26522",
+                "enabledTextColor": "#FFFFFF"
+            },
+            "secondaryButtonCustomization": {
+                "disabledBackgroundColor": "#F26522",
+                "disabledTextColor": "#FFFFFF",
+                "enabledBackgroundColor": "#E02020",
+                "enabledTextColor": "#FFFFFF"
+            },
+            "fontName": "Avenir-Medium",
+            "fontSize": 16,
+            "cornerRadius": 8
+        },
+        "toolbarCustomization": {
+            "backgroundColor": "#F26522",
+            "textColor": "#FFFFFF",
+            "fontName": "Avenir-Medium",
+            "fontSize": 10
+        },
+        "labelCustomization": {
+            "headingCustomization": {
+                "textColor": "#25272C",
+                "fontName": "Avenir-Heavy",
+                "fontSize": 18
+            },
+            "subHeadingCustomization": {
+                "textColor": "#25272C",
+                "fontName": "Avenir-Book",
+                "fontSize": 14
+            }
+        }
+    },
+    "textCustomization": {
+        "consentScreenConfiguration": {
+            "consentPopUpRegisterButtonText": "Register",
+            "consentPopUpSkipButtonText": "Skip for now,I'll do it later"
+        },
+        "tncScreenConfiguration": {
+            "consentPopUpOkButtonText": "OK"
+        },
+        "bottomSheetPermissionPopupConfiguration": {
+            "topHeaderText": "Permissions Required",
+            "topSubHeaderText": "We need access to proceed",
+            "headerTextForContents": "Why We Need This",
+            "subTextForContents": "This permission ensures full functionality.",
+            "buttonTextForAllowPermissions": "Allow",
+            "buttonTextForSkipPermissions": "Skip"
+        },
+        "simBindingScreenConfiguration": {
+            "appBarText": "Registration",
+            "topHeaderText": "Bind Your SIM",
+            "topSubHeaderText": "For Secure Access",
+            "headerTextForContents": "Benefits of Binding",
+            "subTextForContents": "Faster, secure transactions.",
+            "textForFullScreenSubContent": "We need to send an SMS to verify the Mobile Number. Select the SIM to send an SMS",
+            "buttonTextForProceed": "Proceed"
+        },
+        "bottomSheetSimBindingProcessingPopupConfiguration": {
+            "topHeaderText": "Set-up Biometric",
+            "topSubHeaderText": "Please wait",
+            "headerTextForContents": "Verifying Details",
+            "subTextForContents": "This may take a moment.",
+            "numberVerificationProcessingText": "Please wait while we verify your mobile number...",
+            "numberVerifiedText": "Mobile number successfully verified.",
+            "biometricSetupText": "Biometric set-up",
+            "biometricVerifiedText": "Finalizing your biometric set-up.."
+        },
+        "bottomSheetRegistrationSuccessfulPopupConfiguration": {
+            "topHeaderText": "",
+            "topSubHeaderText": "",
+            "headerTextForContents": "Congratulations",
+            "subTextForContents": "Flash Pay is setup now! All future payments can be done via your biometric verification.",
+            "buttonText": "TAKING BACK TO MERCHANT"
+        },
+        "bottomSheetFailureScreenConfiguration": {
+            "topHeaderText": "Failed!",
+            "topSubHeaderText": "",
+            "headerTextForContents": "Could not verify mobile number",
+            "subTextForContents": "We couldn't verify your number because it doesn't match what your bank has on record. To set up Face ID, make sure both numbers match, then try again",
+            "buttonText": "TAKING BACK TO MERCHANT"
+        },
+        "transactionHistoryScreenConfiguration": {
+            "appBarText": "Card Authentication Services",
+            "topHeaderText": "Authentication History",
+            "topSubHeaderText": "",
+            "headerTextForContents": "",
+            "subTextForContents": "",
+            "bottomBarTransactionsText": "Transaction",
+            "bottomBarOfflineOTPText": "Offline OTP"
+        },
+        "offlineOTPScreenConfiguration": {
+            "appBarText": "Card Authentication Services",
+            "topHeaderText": "Offline OTP",
+            "topSubHeaderText": "",
+            "headerTextForContents": "",
+            "subTextForContents": "",
+            "copyText": "Copy to Clipboard"
+        },
+        "bottomSheetAuthenticationPopupConfiguration": {
+            "topHeaderText": "",
+            "topSubHeaderText": "",
+            "headerTextForContents": "Swipe To Pay",
+            "subTextForContents": "",
+            "declineButtontext": "Decline",
+            "swipeToPayButtonText": "Swipe to Pay"
+        },
+        "deRegPopupConfiguration": {
+            "topHeaderText": "",
+            "topSubHeaderText": "",
+            "headerTextForContents": "De-Register",
+            "subTextForContents": "This action will De-Register from Secure Pay. Is this what you intended to do?",
+            "okButtonText": "OK",
+            "cancelButtonText": "Cancel"
+        }
+    }
+}

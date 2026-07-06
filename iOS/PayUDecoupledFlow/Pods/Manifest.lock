@@ -1,0 +1,38 @@
+PODS:
+  - PayUIndia-3DS2-SDK (4.0.0.alpha.2):
+    - PayUIndia-3DS2Core-SDK (~> 4.0)
+    - PayUIndia-CrashReporter (~> 4.0)
+    - PayUIndia-NetworkReachability (~> 2.1)
+  - PayUIndia-3DS2Core-SDK (4.0.0)
+  - PayUIndia-Analytics (4.1.0):
+    - PayUIndia-NetworkReachability (~> 2.1)
+  - PayUIndia-CrashReporter (4.0.3)
+  - PayUIndia-NetworkReachability (2.1.1)
+  - PayUIndia-TridentityMFA-SDK (1.2.0):
+    - PayUIndia-Analytics (~> 4.0)
+    - PayUIndia-CrashReporter (~> 4.0)
+
+DEPENDENCIES:
+  - PayUIndia-3DS2-SDK (= 4.0.0.alpha.2)
+  - PayUIndia-TridentityMFA-SDK
+
+SPEC REPOS:
+  trunk:
+    - PayUIndia-3DS2-SDK
+    - PayUIndia-3DS2Core-SDK
+    - PayUIndia-Analytics
+    - PayUIndia-CrashReporter
+    - PayUIndia-NetworkReachability
+    - PayUIndia-TridentityMFA-SDK
+
+SPEC CHECKSUMS:
+  PayUIndia-3DS2-SDK: 7b9d6dea711e1e223cca84f3bd71d12fea83d5f7
+  PayUIndia-3DS2Core-SDK: 895b10c13c33314efccbe8713495aa6c3b46b315
+  PayUIndia-Analytics: 0cec0e6783db70080f7ca2721ae024bc26af7fb4
+  PayUIndia-CrashReporter: f3dc6fe34a4f26d31107e508c4a9b17902c36b83
+  PayUIndia-NetworkReachability: 581c04b9ea3a8aaa78faef179ad819759942f381
+  PayUIndia-TridentityMFA-SDK: 124a842e9c6f1fc6b28c52e41108cd08fd3c4661
+
+PODFILE CHECKSUM: b2ca27406339453badcc8ebbffe0f51b341c6e92
+
+COCOAPODS: 1.16.2

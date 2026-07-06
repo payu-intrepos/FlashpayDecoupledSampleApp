@@ -1,0 +1,10 @@
+{
+"code": 200,
+"status": "SUCCESS",
+"message": "Device Registered succes",
+"customerId": "0b209247-6fed-45b7-a4",
+"keyToken": "MzQ1NjRyZnJndGdydGdlZGZ",
+"vendorNumber": "998767XXXXX",
+"maxRetries": 5,
+"smsKeyWord": "WAAU"
+}

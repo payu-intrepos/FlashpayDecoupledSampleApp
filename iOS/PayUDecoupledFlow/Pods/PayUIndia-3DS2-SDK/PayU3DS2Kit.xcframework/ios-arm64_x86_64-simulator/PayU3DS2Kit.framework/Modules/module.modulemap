@@ -1,0 +1,10 @@
+framework module PayU3DS2Kit {
+  umbrella header "PayU3DS2Kit.h"
+  export *
+
+  module * { export * }
+}
+
+module PayU3DS2Kit.Swift {
+  header "PayU3DS2Kit-Swift.h"
+}

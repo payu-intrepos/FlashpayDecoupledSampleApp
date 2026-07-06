@@ -1,0 +1,742 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.1 effective-5.10 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name PayUTridentityMFAKit
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
+import Combine
+import CommonCrypto
+import CoreData
+import CoreGraphics
+import CoreLocation
+import CoreTelephony
+import CoreText
+import CryptoKit
+import Darwin
+import DeveloperToolsSupport
+import Foundation
+import LocalAuthentication
+import MachO
+import MessageUI
+import PayUAnalyticsKit
+import PayUCrashReporter
+import QuartzCore
+import Security
+import Swift
+import SwiftUI
+import SystemConfiguration
+import UIKit
+import UserNotifications
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os.log
+import os
+extension QuartzCore.CALayer {
+  public func logLayerTree(withIndent: Swift.Int = 0)
+}
+public protocol TransactionInfo {
+  var amount: Swift.String? { get }
+  var merchantName: Swift.String? { get }
+  var productId: Swift.String? { get }
+  var timeStamp: Swift.Double { get }
+  var expTimeStamp: Swift.Double { get }
+  var type: Swift.String? { get }
+  var transactionId: Swift.String? { get }
+  var requesterTxnId: Swift.String? { get }
+  var authenticationType: Swift.String? { get }
+}
+public protocol TransactionPayment {
+  associatedtype Info : PayUTridentityMFAKit.TransactionInfo
+  var transaction: Self.Info { get }
+  var paymentStatus: PayUTridentityMFAKit.PushStatus { get }
+}
+@_inheritsConvenienceInitializers @objc public class ClientConfig : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct DefaultConstants {
+  public static let processingCircleColor: Swift.String
+}
+@objc public class UICustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var processingCircleColor: Swift.String? {
+    get
+  }
+  @objc public var buttonCustomization: PayUTridentityMFAKit.ButtonCustomization? {
+    get
+  }
+  @objc public var toolbarCustomization: PayUTridentityMFAKit.ToolbarThemeCustomization? {
+    get
+  }
+  @objc public var labelCustomization: PayUTridentityMFAKit.LabelCustomization? {
+    get
+  }
+  @objc public init(processingCircleColor: Swift.String? = nil, buttonCustomization: PayUTridentityMFAKit.ButtonCustomization? = nil, toolbarCustomization: PayUTridentityMFAKit.ToolbarThemeCustomization? = nil, labelCustomization: PayUTridentityMFAKit.LabelCustomization? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum KeyChainKey : Swift.String, Swift.Codable {
+  case clientId
+  case secretKey
+  case apiKey
+  case clientToken
+  case clientExpiry
+  case clientServerPubkey
+  case clientBin
+  case clientFCMToken
+  case registeredPhoneNumber
+  case requestOrTransactionId
+  case environment
+  case appId
+  case customerId
+  case consentId
+  case featureId
+  case deviceUUID
+  case simID
+  case aesKey
+  case payloadSecretKey
+  case offlineOtp
+  case biomtricPopupShown
+  case isDateAndTimeAutoSet
+  case shouldAllowSecurityCheck
+  case bankURL
+  case bankId
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc public class BottomSheetSuccessConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var buttonText: Swift.String? {
+    get
+  }
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, buttonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class ConsentScreenConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var consentPopUpRegisterButtonText: Swift.String? {
+    get
+  }
+  @objc public var consentPopUpSkipButtonText: Swift.String? {
+    get
+  }
+  @objc public init(consentPopUpRegisterButtonText: Swift.String? = nil, consentPopUpSkipButtonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class TransactionHistoryScreenConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var appBarText: Swift.String, topHeaderText: Swift.String, topSubHeaderText: Swift.String, headerTextForContents: Swift.String
+  @objc public var subTextForContents: Swift.String, bottomBarTransactionsText: Swift.String, bottomBarOfflineOTPText: Swift.String
+  @objc public init(appBarText: Swift.String? = nil, topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, bottomBarTransactionsText: Swift.String? = nil, bottomBarOfflineOTPText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class ToolbarThemeCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var textColor: Swift.String?, fontName: Swift.String?
+  @objc public var fontSize: Swift.Int {
+    get
+  }
+  @objc public var backgroundColor: Swift.String? {
+    get
+  }
+  @objc public init(textColor: Swift.String? = nil, fontName: Swift.String? = nil, fontSize: Swift.Int = 10, backgroundColor: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class HeadingThemeCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var textColor: Swift.String?, fontName: Swift.String?
+  @objc public var fontSize: Swift.Int
+  @objc public var backgroundColor: Swift.String?
+  @objc public init(textColor: Swift.String? = nil, fontName: Swift.String? = nil, fontSize: Swift.Int = 16, backgroundColor: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class DeRegPopupConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var okButtonText: Swift.String?, cancelButtonText: Swift.String?
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, okButtonText: Swift.String? = nil, cancelButtonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class BottomSheetFailureConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var buttonText: Swift.String? {
+    get
+  }
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, buttonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class LabelCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var headingCustomization: PayUTridentityMFAKit.HeadingThemeCustomization? {
+    get
+  }
+  @objc public var subHeadingCustomization: PayUTridentityMFAKit.SubHeadingThemeCustomization? {
+    get
+  }
+  @objc public init(headingCustomization: PayUTridentityMFAKit.HeadingThemeCustomization? = nil, subHeadingCustomization: PayUTridentityMFAKit.SubHeadingThemeCustomization? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct TDYS3EndPoint {
+  public var clientAssestsUrl: Foundation.URL {
+    get
+  }
+  public var commonAssestsUrl: Foundation.URL {
+    get
+  }
+  public var headers: [Swift.String : Any] {
+    get
+  }
+}
+@objc public protocol TridentSDKDelegate : PayUTridentityMFAKit.SDKClosureDelegate {
+  @objc func fetchStatus(data: [Swift.String : Any])
+  @objc func showCustomerStatus(message: Swift.String)
+}
+@objc public protocol SDKClosureDelegate {
+  @objc optional func sdkDidClose(with info: [Swift.String : Any])
+}
+@objc public protocol HeadlessSDKProtocol {
+  @objc func sdkStatusUpdate(data: [Swift.String : Any])
+}
+@objc public protocol TridentityMFASDKProtocol {
+  @objc func sdkStatusUpdate(data: [Swift.String : Any])
+}
+public struct LogoConfig : Swift.Codable {
+  public var defaultLogo: Swift.String?
+  public var roundedLogo: Swift.String?
+  public var gifLogo: Swift.String?
+  public init(defaultLogo: Swift.String? = nil, roundedLogo: Swift.String? = nil, gifLogo: Swift.String? = nil)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
+public let SDKReachabilityChangedNotification: Foundation.NSNotification.Name
+extension Foundation.NSNotification.Name {
+  public static let reachabilityChanged: Foundation.Notification.Name
+}
+@_hasMissingDesignatedInitializers public class MockUtility {
+  public static var isMockEnabled: Swift.Bool
+  public static var jsonFileName: Swift.String
+  @objc deinit
+}
+public enum Status : Swift.String {
+  case initiated
+  case success
+  case failure
+  case cancelled
+  case notSpecified
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum EventType : Swift.String {
+  case info
+  case error
+  case notSpecified
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum EventSeverity : Swift.String {
+  case low
+  case medium
+  case high
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc public class SimBindingScreenConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var appBarText: Swift.String?, topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?
+  @objc public var subTextForContents: Swift.String?, textForFullScreenSubContent: Swift.String?, buttonTextForProceed: Swift.String?
+  @objc public init(appBarText: Swift.String? = nil, topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, textForFullScreenSubContent: Swift.String? = nil, buttonTextForProceed: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class ThemeModel : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var uiCustomization: PayUTridentityMFAKit.UICustomization? {
+    get
+  }
+  @objc public var textCustomization: PayUTridentityMFAKit.TextCustomization? {
+    get
+  }
+  @objc public init(uiCustomization: PayUTridentityMFAKit.UICustomization? = nil, textCustomization: PayUTridentityMFAKit.TextCustomization? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public func base32Encode(_ data: Foundation.Data) -> Swift.String
+public func base32HexEncode(_ data: Foundation.Data) -> Swift.String
+public func base32DecodeToData(_ string: Swift.String) -> Foundation.Data?
+public func base32HexDecodeToData(_ string: Swift.String) -> Foundation.Data?
+public func base32Encode(_ array: [Swift.UInt8]) -> Swift.String
+public func base32HexEncode(_ array: [Swift.UInt8]) -> Swift.String
+public func base32Decode(_ string: Swift.String) -> [Swift.UInt8]?
+public func base32HexDecode(_ string: Swift.String) -> [Swift.UInt8]?
+extension Swift.String {
+  public var base32DecodedData: Foundation.Data? {
+    get
+  }
+  public var base32EncodedString: Swift.String {
+    get
+  }
+  public func base32DecodedString(_ encoding: Swift.String.Encoding = .utf8) -> Swift.String?
+  public var base32HexDecodedData: Foundation.Data? {
+    get
+  }
+  public var base32HexEncodedString: Swift.String {
+    get
+  }
+  public func base32HexDecodedString(_ encoding: Swift.String.Encoding = .utf8) -> Swift.String?
+}
+extension Foundation.Data {
+  public var base32EncodedString: Swift.String {
+    get
+  }
+  public var base32EncodedData: Foundation.Data {
+    get
+  }
+  public var base32DecodedData: Foundation.Data? {
+    get
+  }
+  public var base32HexEncodedString: Swift.String {
+    get
+  }
+  public var base32HexEncodedData: Foundation.Data {
+    get
+  }
+  public var base32HexDecodedData: Foundation.Data? {
+    get
+  }
+}
+final public class TDYFloatValueProvider {
+  public typealias CGFloatValueBlock = (CoreFoundation.CGFloat) -> CoreFoundation.CGFloat
+  final public var float: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public init(block: @escaping PayUTridentityMFAKit.TDYFloatValueProvider.CGFloatValueBlock)
+  public init(_ float: CoreFoundation.CGFloat)
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public func hasUpdate(frame: CoreFoundation.CGFloat) -> Swift.Bool
+  final public func value(frame: CoreFoundation.CGFloat) -> Any
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class TridentityMFASDKInterface : ObjectiveC.NSObject {
+  @objc public static let shared: PayUTridentityMFAKit.TridentityMFASDKInterface
+  @objc deinit
+  @objc public func initializeSDK()
+  @objc public func configureSDK(with jsonObject: [Swift.String : Any], completionHandler: @escaping (Swift.Bool, [Swift.String : Any]) -> Swift.Void)
+  @objc public func initiateRegistration(with jsonObject: [Swift.String : Any], in homeViewController: UIKit.UIViewController, completionHandler: @escaping ([Swift.String : Any]) -> Swift.Void)
+  @objc public func checkRegistrationStatus(isBiometricChanged: Swift.Bool = false, with jsonObject: [Swift.String : Swift.String], completionHandler: @escaping ([Swift.String : Any]) -> Swift.Void)
+  @objc public func processTransaction(with jsonObject: [Swift.String : Swift.String], statusDelegate: any PayUTridentityMFAKit.TridentityMFASDKProtocol)
+  @objc public func deRegisterUser(withBCTIDs bctids: [Swift.String], statusDelegate: any PayUTridentityMFAKit.TridentityMFASDKProtocol)
+  @objc public func setRequestId(requestId: Swift.String)
+}
+public class TDYAsset : Swift.Codable {
+  final public let id: Swift.String
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension Foundation.Data {
+  public var bytes: [Swift.UInt8] {
+    get
+  }
+}
+infix operator +| : DefaultPrecedence
+infix operator +- : DefaultPrecedence
+@_hasMissingDesignatedInitializers public class KeyChain {
+  public static let shareKC: PayUTridentityMFAKit.KeyChain
+  public func appKeys() -> [Swift.String]
+  public func userKeys() -> [Swift.String]
+  public func allKeys() -> [Swift.String]
+  public func removeAll() -> Swift.Bool
+  @objc deinit
+}
+@objc public class TextCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var consentScreenConfiguration: PayUTridentityMFAKit.ConsentScreenConfiguration? {
+    get
+  }
+  @objc public var tncScreenConfiguration: PayUTridentityMFAKit.TNCScreenConfiguration? {
+    get
+  }
+  @objc public var bottomSheetPermissionPopupConfiguration: PayUTridentityMFAKit.BottomSheetPermissionPopupConfiguration? {
+    get
+  }
+  @objc public var simBindingScreenConfiguration: PayUTridentityMFAKit.SimBindingScreenConfiguration? {
+    get
+  }
+  @objc public var bottomSheetSimBindingProcessingPopupConfiguration: PayUTridentityMFAKit.BottomSheetSimBindingProcessingPopupConfiguration? {
+    get
+  }
+  @objc public var bottomSheetRegistrationSuccessfulPopupConfiguration: PayUTridentityMFAKit.BottomSheetSuccessConfiguration? {
+    get
+  }
+  @objc public var bottomSheetFailureScreenConfiguration: PayUTridentityMFAKit.BottomSheetFailureConfiguration? {
+    get
+  }
+  @objc public var transactionHistoryScreenConfiguration: PayUTridentityMFAKit.TransactionHistoryScreenConfiguration? {
+    get
+  }
+  @objc public var offlineOTPScreenConfiguration: PayUTridentityMFAKit.OfflineOTPScreenConfiguration? {
+    get
+  }
+  @objc public var bottomSheetAuthenticationPopupConfiguration: PayUTridentityMFAKit.BottomSheetAuthenticationPopupConfiguration? {
+    get
+  }
+  @objc public var deRegPopupConfiguration: PayUTridentityMFAKit.DeRegPopupConfiguration? {
+    get
+  }
+  @objc public init(consentScreenConfiguration: PayUTridentityMFAKit.ConsentScreenConfiguration? = nil, tncScreenConfiguration: PayUTridentityMFAKit.TNCScreenConfiguration? = nil, bottomSheetPermissionPopupConfiguration: PayUTridentityMFAKit.BottomSheetPermissionPopupConfiguration? = nil, simBindingScreenConfiguration: PayUTridentityMFAKit.SimBindingScreenConfiguration? = nil, bottomSheetSimBindingProcessingPopupConfiguration: PayUTridentityMFAKit.BottomSheetSimBindingProcessingPopupConfiguration? = nil, bottomSheetRegistrationSuccessfulPopupConfiguration: PayUTridentityMFAKit.BottomSheetSuccessConfiguration? = nil, bottomSheetFailureScreenConfiguration: PayUTridentityMFAKit.BottomSheetFailureConfiguration? = nil, transactionHistoryScreenConfiguration: PayUTridentityMFAKit.TransactionHistoryScreenConfiguration? = nil, offlineOTPScreenConfiguration: PayUTridentityMFAKit.OfflineOTPScreenConfiguration? = nil, bottomSheetAuthenticationPopupConfiguration: PayUTridentityMFAKit.BottomSheetAuthenticationPopupConfiguration? = nil, deRegPopupConfiguration: PayUTridentityMFAKit.DeRegPopupConfiguration? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PrimaryCustomButtonCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var enabledBackgroundColor: Swift.String? {
+    get
+  }
+  @objc public var enabledTextColor: Swift.String? {
+    get
+  }
+  @objc public var disabledBackgroundColor: Swift.String? {
+    get
+  }
+  @objc public var disabledTextColor: Swift.String? {
+    get
+  }
+  @objc public init(enabledBackgroundColor: Swift.String? = nil, enabledTextColor: Swift.String? = nil, disabledBackgroundColor: Swift.String? = nil, disabledTextColor: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public enum ButtonTextTransformType : Swift.Int, Swift.Codable {
+  case lowercase = 0
+  case uppercase = 1
+  case `default` = 2
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class ButtonCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var primaryButtonCustomization: PayUTridentityMFAKit.PrimaryCustomButtonCustomization? {
+    get
+  }
+  @objc public var secondaryButtonCustomization: PayUTridentityMFAKit.SecondaryCustomButtonCustomization? {
+    get
+  }
+  @objc public var fontName: Swift.String? {
+    get
+  }
+  @objc public var fontSize: Swift.Int {
+    get
+  }
+  @objc public var buttonTextTransform: PayUTridentityMFAKit.ButtonTextTransformType {
+    get
+  }
+  @objc public var cornerRadius: Swift.Int {
+    get
+  }
+  @objc public init(primaryButtonCustomization: PayUTridentityMFAKit.PrimaryCustomButtonCustomization? = nil, secondaryButtonCustomization: PayUTridentityMFAKit.SecondaryCustomButtonCustomization? = nil, fontName: Swift.String? = nil, fontSize: Swift.Int = 14, buttonTextTransform: PayUTridentityMFAKit.ButtonTextTransformType = .default, cornerRadius: Swift.Int = 12)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension PayUTridentityMFAKit.ButtonCustomization {
+  @objc dynamic public func setTextTransform(textTransform: PayUTridentityMFAKit.ButtonTextTransformType)
+  @objc dynamic public func getBtnTextTransform(title: Swift.String) -> Swift.String
+}
+public enum WibmoAuthenticatorError : Swift.Error {
+  public var domain: Swift.String {
+    get
+  }
+  case connectionError(reason: PayUTridentityMFAKit.ConnectionFailureReason)
+  case serverResponse(reason: PayUTridentityMFAKit.ServerResponseFailure)
+  case unknownError
+  case sdkTimedout
+  case retryLimitBreached
+  case biometricFailed
+  case tokenExpired
+  case registerFailed(reason: PayUTridentityMFAKit.RegisterFailedReason)
+  case failedByReason(Swift.String)
+  case updateTransactionFailed(reason: Swift.String)
+  case invalidParameter(Swift.String)
+}
+extension PayUTridentityMFAKit.WibmoAuthenticatorError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum RegisterFailedReason {
+  case pvcRetry
+  case bindingFailed
+  case smsSendError(reason: PayUTridentityMFAKit.SmsSendFailureReason)
+  case invalidToken
+  case mobileNumberMismatch
+}
+public enum ConnectionFailureReason {
+  case noInternetAccess
+  case apiTokenExpired
+  case apiFailure
+  public static func == (a: PayUTridentityMFAKit.ConnectionFailureReason, b: PayUTridentityMFAKit.ConnectionFailureReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ServerResponseFailure {
+  case serverError(Swift.String?)
+}
+public enum SmsSendFailureReason {
+  case cancelled
+  case failed
+  case notAvailable
+  case invalidToken
+  case eventTimeout
+  public static func == (a: PayUTridentityMFAKit.SmsSendFailureReason, b: PayUTridentityMFAKit.SmsSendFailureReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension PayUTridentityMFAKit.RegisterFailedReason : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension PayUTridentityMFAKit.ConnectionFailureReason : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension PayUTridentityMFAKit.ServerResponseFailure : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension PayUTridentityMFAKit.SmsSendFailureReason : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@objc public class SecondaryCustomButtonCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var enabledBackgroundColor: Swift.String? {
+    get
+  }
+  @objc public var enabledTextColor: Swift.String? {
+    get
+  }
+  @objc public var disabledBackgroundColor: Swift.String? {
+    get
+  }
+  @objc public var disabledTextColor: Swift.String? {
+    get
+  }
+  @objc public init(enabledBackgroundColor: Swift.String? = nil, enabledTextColor: Swift.String? = nil, disabledBackgroundColor: Swift.String? = nil, disabledTextColor: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public protocol NotificationState : AnyObject {
+  func doClearNotification(_ trnxID: Swift.String?)
+  func recievedNotification(_ trnxID: Swift.String?)
+}
+public struct PushTransactionConvertor {
+  public static func makeTransactionDetail(fromPushInfo userInfo: [Swift.AnyHashable : Any]) -> PayUTridentityMFAKit.TransactionDetail?
+}
+@objc public class SubHeadingThemeCustomization : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var textColor: Swift.String?, fontName: Swift.String?
+  @objc public var fontSize: Swift.Int {
+    get
+  }
+  @objc public var backgroundColor: Swift.String? {
+    get
+  }
+  @objc public init(textColor: Swift.String? = nil, fontName: Swift.String? = nil, fontSize: Swift.Int = 13, backgroundColor: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class BottomSheetAuthenticationPopupConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var declineButtontext: Swift.String?, swipeToPayButtonText: Swift.String?
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, declineButtontext: Swift.String? = nil, swipeToPayButtonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum TDYOTPAlgorithm {
+  case sha1
+  case sha256
+  case sha512
+  public static func == (a: PayUTridentityMFAKit.TDYOTPAlgorithm, b: PayUTridentityMFAKit.TDYOTPAlgorithm) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public class BottomSheetPermissionPopupConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var buttonTextForAllowPermissions: Swift.String?, buttonTextForSkipPermissions: Swift.String?
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, buttonTextForAllowPermissions: Swift.String? = nil, buttonTextForSkipPermissions: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc @_hasMissingDesignatedInitializers public class TransactionDetail : ObjectiveC.NSObject {
+  public var amount: Swift.String
+  public var merchantName: Swift.String
+  public var timeStamp: Swift.Double
+  public var expTimeStamp: Swift.Double
+  public var type: Swift.String?
+  public var transactionId: Swift.String
+  public var lastFourDigits: Swift.String?
+  public var authenticationType: Swift.String
+  public var expireTimer: Foundation.Timer?
+  @objc deinit
+}
+public struct TDYHOTP {
+  public let secret: Foundation.Data
+  public let digits: Swift.Int
+  public let algorithm: PayUTridentityMFAKit.TDYOTPAlgorithm
+  public init?(secret: Foundation.Data, digits: Swift.Int = 6, algorithm: PayUTridentityMFAKit.TDYOTPAlgorithm = .sha1)
+  public func generate(counter: Swift.UInt64) -> Swift.String?
+}
+@objc public class OfflineOTPScreenConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var appBarText: Swift.String?, topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?
+  @objc public var subTextForContents: Swift.String?, copyText: Swift.String?
+  @objc public init(appBarText: Swift.String? = nil, topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, copyText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class TNCScreenConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var consentPopUpOkButtonText: Swift.String? {
+    get
+  }
+  @objc public init(consentPopUpOkButtonText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum PushStatus : Swift.String, Swift.Codable {
+  case accept
+  case decline
+  case expired
+  case cancelled
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias URLString = Swift.String
+extension Swift.Array where Element == Swift.UInt8 {
+  public func toHexString() -> Swift.String
+}
+@objc public class BottomSheetSimBindingProcessingPopupConfiguration : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var topHeaderText: Swift.String?, topSubHeaderText: Swift.String?, headerTextForContents: Swift.String?, subTextForContents: Swift.String?
+  @objc public var numberVerificationProcessingText: Swift.String?, numberVerifiedText: Swift.String?, biometricSetupText: Swift.String?, biometricVerifiedText: Swift.String?
+  @objc public init(topHeaderText: Swift.String? = nil, topSubHeaderText: Swift.String? = nil, headerTextForContents: Swift.String? = nil, subTextForContents: Swift.String? = nil, numberVerificationProcessingText: Swift.String? = nil, numberVerifiedText: Swift.String? = nil, biometricSetupText: Swift.String? = nil, biometricVerifiedText: Swift.String? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum RegistrationResponseCode : Swift.Int {
+  case success
+  case invalidClientDetail
+  case invalidConsumerId
+  case consentRequired
+  case customerDeregistered
+  case tokenNotAllowed
+  case checksumMismatch
+  case txnIdInvalidOrProcessed
+  case pendingDeregistration
+  case simBindingInit
+  case simBindingTokenDelivered
+  case simBindingTokenDeliveryFailed
+  case simBindingSuccess
+  case registrationEvalFailed
+  case registrationCommL1Failed
+  case registrationCommL2Failed
+  case tempCardIdMissing
+  case binMissing
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct TDYTOTP {
+  public let secret: Foundation.Data
+  public let digits: Swift.Int
+  public let timeInterval: Swift.Int
+  public let algorithm: PayUTridentityMFAKit.TDYOTPAlgorithm
+  public init?(secret: Foundation.Data, digits: Swift.Int = 6, timeInterval: Swift.Int = 60, algorithm: PayUTridentityMFAKit.TDYOTPAlgorithm = .sha1)
+  public func generate(time: Foundation.Date) -> Swift.String?
+  public func generate(secondsPast1970: Swift.Int) -> Swift.String?
+}
+@objc public class TDYTokenValidateResponse : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let status: Swift.String?
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public protocol AuthenticatorTheme {
+  var primaryColor: UIKit.UIColor { get }
+  var secondaryColor: UIKit.UIColor { get }
+  var backgroundColor: UIKit.UIColor { get }
+  var navigationBar: UIKit.UIColor { get }
+  var bottomBar: UIKit.UIColor { get }
+}
+extension PayUTridentityMFAKit.KeyChainKey : Swift.Equatable {}
+extension PayUTridentityMFAKit.KeyChainKey : Swift.Hashable {}
+extension PayUTridentityMFAKit.KeyChainKey : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.Status : Swift.Equatable {}
+extension PayUTridentityMFAKit.Status : Swift.Hashable {}
+extension PayUTridentityMFAKit.Status : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.EventType : Swift.Equatable {}
+extension PayUTridentityMFAKit.EventType : Swift.Hashable {}
+extension PayUTridentityMFAKit.EventType : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.EventSeverity : Swift.Equatable {}
+extension PayUTridentityMFAKit.EventSeverity : Swift.Hashable {}
+extension PayUTridentityMFAKit.EventSeverity : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.ButtonTextTransformType : Swift.Equatable {}
+extension PayUTridentityMFAKit.ButtonTextTransformType : Swift.Hashable {}
+extension PayUTridentityMFAKit.ButtonTextTransformType : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.ConnectionFailureReason : Swift.Equatable {}
+extension PayUTridentityMFAKit.ConnectionFailureReason : Swift.Hashable {}
+extension PayUTridentityMFAKit.SmsSendFailureReason : Swift.Equatable {}
+extension PayUTridentityMFAKit.SmsSendFailureReason : Swift.Hashable {}
+extension PayUTridentityMFAKit.TDYOTPAlgorithm : Swift.Equatable {}
+extension PayUTridentityMFAKit.TDYOTPAlgorithm : Swift.Hashable {}
+extension PayUTridentityMFAKit.PushStatus : Swift.Equatable {}
+extension PayUTridentityMFAKit.PushStatus : Swift.Hashable {}
+extension PayUTridentityMFAKit.PushStatus : Swift.RawRepresentable {}
+extension PayUTridentityMFAKit.RegistrationResponseCode : Swift.Equatable {}
+extension PayUTridentityMFAKit.RegistrationResponseCode : Swift.Hashable {}
+extension PayUTridentityMFAKit.RegistrationResponseCode : Swift.RawRepresentable {}

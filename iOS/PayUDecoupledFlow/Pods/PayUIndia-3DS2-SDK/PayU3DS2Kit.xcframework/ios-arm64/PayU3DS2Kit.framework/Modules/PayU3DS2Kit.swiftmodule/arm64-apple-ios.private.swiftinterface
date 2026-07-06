@@ -1,0 +1,533 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name PayU3DS2Kit
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+import CryptoKit
+import DeveloperToolsSupport
+import Foundation
+import LocalAuthentication
+import PayU3DS2CoreKit
+@_exported import PayU3DS2Kit
+import PayUCrashReporter
+import PayUNetworkReachability
+import Swift
+import SwiftUI
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2TextBoxCustomisation : PayU3DS2Kit.PayU3DS2BaseCustomisation {
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int, borderColor: Swift.String?, borderWidth: Swift.Int, cornerRadius: Swift.Int)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2ChallengeParameter : ObjectiveC.NSObject, Swift.Encodable {
+  @objc public var acsSignedContent: Swift.String
+  @objc public var acsRefNumber: Swift.String
+  @objc public var acsTransactionID: Swift.String
+  @objc public var threeDSServerTransactionID: Swift.String
+  @objc public var mfaParams: PayU3DS2Kit.PayU3DS2MFAParam?
+  @objc public init(acsSignedContent: Swift.String, acsRefNumber: Swift.String, acsTransactionID: Swift.String, threeDSServerTransactionID: Swift.String, mfaParams: PayU3DS2Kit.PayU3DS2MFAParam? = nil)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PayU3DS2MFAParam : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var tdyCardId: Swift.String?
+  @objc public var tdyClientId: Swift.String?
+  @objc public var issuerImage: Swift.String?
+  @objc public var psImage: Swift.String?
+  @objc public var messageType: Swift.String?
+  @objc public var name: Swift.String?
+  @objc public var mfaId: Swift.String?
+  @objc public var criticalityIndicator: Swift.Bool
+  @objc public var status: Swift.String?
+  @objc public var data: Swift.String?
+  @objc public var cardBin: Swift.String?
+  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc public init(tdyCardId: Swift.String?, tdyClientId: Swift.String?, issuerImage: Swift.String?, psImage: Swift.String?, messageType: Swift.String?, name: Swift.String?, mfaId: Swift.String?, criticalityIndicator: Swift.Bool, status: Swift.String? = nil, data: Swift.String? = nil, cardBin: Swift.String? = nil)
+  @objc deinit
+}
+@objc public class PayU3DS2SIParams : ObjectiveC.NSObject, Foundation.NSCopying {
+  @objc public var billingAmount: Swift.String?
+  @objc public var paymentStartDate: Foundation.Date?
+  @objc public var paymentEndDate: Foundation.Date?
+  @objc public var billingCycle: PayU3DS2Kit.PayU3DS2BillingCycle
+  @objc public var billingInterval: Swift.Int
+  @objc public var isFreeTrial: Swift.Bool
+  @objc public var remarks: Swift.String?
+  @objc public var billingLimit: Swift.String?
+  @objc public var billingRule: Swift.String?
+  @objc public init(billingAmount: Swift.String?, paymentStartDate: Foundation.Date?, paymentEndDate: Foundation.Date?, billingCycle: PayU3DS2Kit.PayU3DS2BillingCycle, billingInterval: Swift.Int)
+  @objc public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  @objc deinit
+}
+@objc public enum PayU3DS2BillingCycle : Swift.Int, Swift.CaseIterable {
+  case once
+  case daily
+  case weekly
+  case monthly
+  case yearly
+  case adhoc
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [PayU3DS2Kit.PayU3DS2BillingCycle]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [PayU3DS2Kit.PayU3DS2BillingCycle] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2BaseConfig : ObjectiveC.NSObject {
+  @objc public var isProduction: Swift.Bool
+  @objc public var merchantResponseTimeout: Swift.Double
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension PayU3DS2Kit.PayU3DS2Utils {
+  public class func getSIPostParams(_ params: PayU3DS2Kit.PayU3DS2PaymentParam?) -> [Swift.String : Swift.String]
+  public class func billingCycleToString(_ billingCycle: PayU3DS2Kit.PayU3DS2BillingCycle) -> Swift.String
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class PayU3DS2ValidatorHelper : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class PayU3DS2PArqResponse : ObjectiveC.NSObject, Swift.Encodable {
+  @objc public var sdkAppID: Swift.String
+  @objc public var sdkEncData: Swift.String
+  @objc public var crv: Swift.String
+  @objc public var kty: Swift.String
+  @objc public var x: Swift.String
+  @objc public var y: Swift.String
+  @objc public var sdkTransID: Swift.String
+  @objc public var sdkReferenceNumber: Swift.String
+  @objc public init(sdkAppID: Swift.String, sdkEncData: Swift.String, crv: Swift.String, kty: Swift.String, x: Swift.String, y: Swift.String, sdkTransID: Swift.String, sdkReferenceNumber: Swift.String)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PayU3DS2FontFamilyCustomisation : ObjectiveC.NSObject, Swift.Codable {
+  @objc public init(headerFontFamily: Swift.String?, subTextFontFamily: Swift.String?)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2HashConstants : ObjectiveC.NSObject {
+  @objc public static let hashString: Swift.String
+  @objc public static let hashType: Swift.String
+  @objc public static let hashName: Swift.String
+  @objc public static let postSalt: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2LabelCustomisation : PayU3DS2Kit.PayU3DS2BaseCustomisation {
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int, headingTextColor: Swift.String?, headingTextFontSize: Swift.Int)
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int, backgroundColor: Swift.String?, headingTextColor: Swift.String?, headingTextFontSize: Swift.Int, headingBackgroundColor: Swift.String?)
+  @objc deinit
+}
+@objc public enum PayU3DS2ButtonTextCaseType : Swift.Int, Swift.Codable {
+  case lowercase
+  case uppercase
+  case `default`
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2ButtonCustomisation : PayU3DS2Kit.PayU3DS2BaseCustomisation {
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int, backgroundColor: Swift.String?, cornerRadius: Swift.Int, resendButtonTextFontColor: Swift.String?, textCaseType: PayU3DS2Kit.PayU3DS2ButtonTextCaseType = .default)
+  @objc deinit
+}
+@objc public enum PayU3DS2DeviceSeverity : Swift.Int {
+  case low
+  case medium
+  case high
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class PayU3DS2DeviceWarning : ObjectiveC.NSObject {
+  @objc public var id: Swift.String
+  @objc public var message: Swift.String
+  @objc public var severity: PayU3DS2Kit.PayU3DS2DeviceSeverity
+  @objc public init(id: Swift.String, message: Swift.String, severity: PayU3DS2Kit.PayU3DS2DeviceSeverity)
+  @objc deinit
+}
+@objc public class PayU3DS2BinInfoResponse : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var issuingBank: Swift.String?
+  @objc public var bin: Swift.String?
+  @objc public var category: Swift.String?
+  @objc public var cardType: Swift.String?
+  @objc public var isDomestic: Swift.String?
+  @objc public var isAtmPinCard: Swift.String?
+  @objc public var isSiSupported: Swift.Int
+  @objc public var isOtpOnTheFly: Swift.Int
+  @objc public var messageVersion: Swift.String?
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PayU3DS2BaseCustomisation : ObjectiveC.NSObject, Swift.Codable {
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class PayU3DS2BaseTextCustomisation : ObjectiveC.NSObject, Swift.Codable {
+  @objc public init(headerText: Swift.String? = nil, subHeaderText: Swift.String? = nil)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2Config : PayU3DS2Kit.PayU3DS2BaseConfig {
+  @objc public var fallback3DS1: Swift.Bool
+  @objc public var uiCustomisation: PayU3DS2Kit.PayU3DS2UICustomisation?
+  @objc public var authenticateOnly: Swift.Bool
+  @objc public var autoSubmit: Swift.Bool
+  @objc public var supportedUIMode: [Swift.String]
+  @objc public var merchantName: Swift.String?
+  @objc public var enableCustomizedOtpUIFlow: Swift.Bool
+  @objc public var enableTxnTimeoutTimer: Swift.Bool
+  @objc public var amount: Swift.String?
+  @objc public var currency: PayU3DS2Kit.PayUCurrency
+  @objc public var acsContentConfig: PayU3DS2Kit.PayU3DS2ACSContentConfig?
+  @objc public var shouldPresent: Swift.Bool
+  @objc public var enableMFAViaBiometric: Swift.Bool
+  @objc public var showToast: Swift.Bool
+  @objc public func setDefaultProgressLoader(showDefaultLoader: Swift.Bool, defaultProgressLoaderColor: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2ACSContentConfig : ObjectiveC.NSObject {
+  @objc public var submitButtonTitle: Swift.String?
+  @objc public var resendButtonTitle: Swift.String?
+  @objc public var otpContent: Swift.String?
+  @objc public var resendInfoContent: Swift.String?
+  @objc public var maxResendInfoContent: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class PayU3DS2TextCustomisation : ObjectiveC.NSObject, Swift.Codable {
+  @objc public init(deviceBindingTextCustomisation: PayU3DS2Kit.PayU3DS2DeviceBindingTextCustomisation?, deviceBindingSuccessTextCustomisation: PayU3DS2Kit.PayU3DS2DeviceBindingConfirmationTextCustomisation?, deviceBindingFailureTextCustomisation: PayU3DS2Kit.PayU3DS2DeviceBindingConfirmationTextCustomisation?)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PayU3DS2HeadlessData : ObjectiveC.NSObject, Swift.Encodable {
+  @objc open var acsRenderingType: Swift.String?
+  @objc open var acsTransactionID: Swift.String?
+  @objc open var challengeAddInfo: Swift.String?
+  @objc open var challengeInfoHeader: Swift.String?
+  @objc open var challengeInfoLabel: Swift.String?
+  @objc open var challengeInfoText: Swift.String?
+  @objc open var challengeInfoTextIndicator: Swift.String?
+  @objc open var challengeSelectInfo: [[Swift.String : Swift.String]]?
+  @objc open var expandInfoLabel: Swift.String?
+  @objc open var expandInfoText: Swift.String?
+  @objc open var issuerImage: PayU3DS2Kit.PayU3DS2ImageDetails?
+  @objc open var networkImage: PayU3DS2Kit.PayU3DS2ImageDetails?
+  @objc open var resendInformationLabel: Swift.String?
+  @objc open var submitAuthenticationLabel: Swift.String?
+  @objc open var whyInfoLabel: Swift.String?
+  @objc open var whyInfoText: Swift.String?
+  @objc open var whitelistingInfoText: Swift.String?
+  @objc open var threeDSServerTransID: Swift.String?
+  @objc public init(data: PayU3DS2CoreKit.UIData)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc open class PayU3DS2ImageDetails : ObjectiveC.NSObject, Swift.Encodable {
+  @objc open var medium: Swift.String?
+  @objc open var high: Swift.String?
+  @objc open var extraHigh: Swift.String?
+  @objc public init(imageInfo: PayU3DS2CoreKit.ImageInfo)
+  @objc deinit
+  open func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public enum PayU3DS2CardScheme : Swift.Int {
+  case masterCard
+  case visa
+  case jcb
+  case amex
+  case maestro
+  case rupay
+  case discover
+  case dinersClub
+  case laser
+  case stateBankMaestro
+  case unknown
+  case sodexo
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class PayU3DS2CardData : ObjectiveC.NSObject {
+  @objc public var cardScheme: PayU3DS2Kit.PayU3DS2CardScheme
+  @objc public var threeDSVersion: Swift.String
+  @objc public init(cardScheme: PayU3DS2Kit.PayU3DS2CardScheme, threeDSVersion: Swift.String)
+  @objc deinit
+}
+public typealias PayU3DS2Completion = (_ response: PayU3DS2Kit.PayU3DS2Response) -> Swift.Void
+public typealias PayU3DS2HashGenerationCompletion = (_ hashDict: [Swift.String : Swift.String]) -> Swift.Void
+@objc public protocol PayU3DS2BaseDelegate {
+  @objc func onError(errorCode: Swift.Int, errorMessage: Swift.String)
+}
+@objc public protocol PayU3DS2HashDelegate {
+  @objc func generateHash(for param: [Swift.String : Swift.String], onCompletion: @escaping PayU3DS2Kit.PayU3DS2HashGenerationCompletion)
+}
+@objc public protocol PayU3DS2MFADelegate {
+  @objc optional func mfaRegistrationStatus(response: Any?)
+}
+@objc public protocol PayU3DS2IniitateChallengeDelegate : PayU3DS2Kit.PayU3DS2MFADelegate {
+  @objc func onInitateChallenge(response: Any?)
+}
+@objc public protocol PayU3DS2Delegate : PayU3DS2Kit.PayU3DS2BaseDelegate, PayU3DS2Kit.PayU3DS2HashDelegate, PayU3DS2Kit.PayU3DS2MFADelegate {
+  @objc func onPaymentSuccess(successResponse: Any?)
+  @objc func onPaymentFailure(failureResponse: Any?)
+  @objc func onPaymentCancel(isTxnInitiated: Swift.Bool)
+}
+@objc public class PayU3DS2ACSResponse : ObjectiveC.NSObject, Swift.Encodable {
+  @objc public var message: Swift.String
+  @objc public var acsActionType: PayU3DS2Kit.PayU3DS2ACSActionType
+  @objc public var headlessData: PayU3DS2Kit.PayU3DS2HeadlessData
+  @objc public init(message: Swift.String, acsActionType: PayU3DS2Kit.PayU3DS2ACSActionType, headlessData: PayU3DS2Kit.PayU3DS2HeadlessData)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2DeviceBindingConfirmationTextCustomisation : PayU3DS2Kit.PayU3DS2BaseTextCustomisation {
+  @objc public init(headerText: Swift.String? = nil, subHeaderText: Swift.String? = nil, buttonText: Swift.String? = nil)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class PayU3DS2Validator : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2ToolBarCustomisation : PayU3DS2Kit.PayU3DS2BaseCustomisation {
+  @objc public init(textFontColor: Swift.String?, textFontSize: Swift.Int, backgroundColor: Swift.String?, buttonText: Swift.String?, headerText: Swift.String?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2Error : ObjectiveC.NSObject, Foundation.LocalizedError {
+  @objc public var message: Swift.String
+  @objc public var errorCode: Swift.Int
+  @objc public var errorDescription: Swift.String? {
+    @objc get
+  }
+  @objc deinit
+}
+@objc public class PayU3DS2Response : ObjectiveC.NSObject {
+  @objc public var status: Swift.Int
+  @objc public var errorMessage: Swift.String?
+  @objc public var result: Any?
+  @objc public init(status: Swift.Int, errorMessage: Swift.String?, result: Any?)
+  @objc public init(status: Swift.Int, result: Any?)
+  @objc public init(status: Swift.Int, errorMessage: Swift.String?)
+  @objc deinit
+}
+@objc public class PayU3DS2MFAResponse : ObjectiveC.NSObject {
+  @objc public var type: PayU3DS2Kit.PayU3DS2MFARequestType
+  @objc public var status: PayU3DS2Kit.PayU3DS2MFAStatus
+  @objc public var timeout: Swift.Int
+  @objc public var message: Swift.String?
+  public init(type: PayU3DS2Kit.PayU3DS2MFARequestType, status: PayU3DS2Kit.PayU3DS2MFAStatus, timeout: Swift.Int = 0)
+  @objc deinit
+}
+@objc public enum PayU3DS2MFARequestType : Swift.Int {
+  case registration
+  case deregistration
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum PayU3DS2MFAStatus : Swift.Int {
+  case initiated
+  case success
+  case failed
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class PayU3DS2CardBinInfoRequest : ObjectiveC.NSObject {
+  @objc public var cardDetails: Swift.String
+  @objc public var isSI: Swift.Bool
+  @objc public init(cardDetails: Swift.String, isSI: Swift.Bool)
+  @objc deinit
+}
+@objc public enum PayU3DS2ACSActionType : Swift.Int, Swift.Encodable {
+  case submit = 0
+  case cancel = 1
+  case resend = 2
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class PayU3DS2ACSActionParams : ObjectiveC.NSObject, Swift.Encodable {
+  @objc public var challengeData: Swift.String?
+  @objc public var acsRenderingType: Swift.String?
+  @objc public var acsTransactionID: Swift.String?
+  @objc public init(challengeData: Swift.String? = nil, acsRenderingType: Swift.String?, acsTransactionID: Swift.String?)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2 : ObjectiveC.NSObject {
+  @objc public static func startRedirectionFlow(vc: UIKit.UIViewController, params: [Swift.String : Any], uiCustomisation: [Swift.String : Any]? = nil, delegate: any PayU3DS2Kit.PayU3DS2Delegate)
+  @objc public static func initialise(key: Swift.String, requestId: Swift.String, config: PayU3DS2Kit.PayU3DS2Config, completion: @escaping PayU3DS2Kit.PayU3DS2Completion)
+  @objc public static func cardBinInfo(cardBinInfoRequest: PayU3DS2Kit.PayU3DS2CardBinInfoRequest, delegate: any PayU3DS2Kit.PayU3DS2HashDelegate, completion: @escaping PayU3DS2Kit.PayU3DS2Completion)
+  @objc public static func extractDeviceDetails(cardData: PayU3DS2Kit.PayU3DS2CardData) -> PayU3DS2Kit.PayU3DS2Response
+  @objc public static func initiateChallenge(challengeParameter: PayU3DS2Kit.PayU3DS2ChallengeParameter, vc: UIKit.UIViewController?, completion: @escaping PayU3DS2Kit.PayU3DS2Completion)
+  @objc public static func initiateChallengeWithMFA(challengeParameter: PayU3DS2Kit.PayU3DS2ChallengeParameter, vc: UIKit.UIViewController?, delegate: any PayU3DS2Kit.PayU3DS2IniitateChallengeDelegate)
+  @objc public static func callPaymentAPI(paymentParams: PayU3DS2Kit.PayU3DS2PaymentParam, delegate: any PayU3DS2Kit.PayU3DS2Delegate, completion: @escaping (_ error: Swift.String?, _ flowType: Swift.String?, _ challengeParameter: PayU3DS2Kit.PayU3DS2ChallengeParameter?) -> Swift.Void)
+  @objc public static func authorisePayment(paymentParams: PayU3DS2Kit.PayU3DS2PaymentParam, delegate: any PayU3DS2Kit.PayU3DS2Delegate)
+  @objc public static func authenticatePayment(delegate: any PayU3DS2Kit.PayU3DS2Delegate)
+  @objc public static func setPlatformParams(paymentParams: PayU3DS2Kit.PayU3DS2PaymentParam)
+  @objc public static func action(acsActionType: PayU3DS2Kit.PayU3DS2ACSActionType, challengeInputParams: PayU3DS2Kit.PayU3DS2ACSActionParams, completion: @escaping PayU3DS2Kit.PayU3DS2Completion)
+  @objc public static func initiatePayment(vc: UIKit.UIViewController, config: PayU3DS2Kit.PayU3DS2Config, paymentParams: PayU3DS2Kit.PayU3DS2PaymentParam, delegate: any PayU3DS2Kit.PayU3DS2Delegate)
+  @objc public static func clean()
+  @objc public static func start()
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PayU3DS2DeviceBindingTextCustomisation : PayU3DS2Kit.PayU3DS2BaseTextCustomisation {
+  @objc public init(headerText: Swift.String? = nil, subHeaderText: Swift.String? = nil, numberVerificationProcessingText: Swift.String? = nil, numberVerifiedText: Swift.String? = nil, biometricSetupText: Swift.String? = nil, biometricVerifiedText: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2Utils : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class PayU3DS2PaymentParam : ObjectiveC.NSObject {
+  @objc public var key: Swift.String
+  @objc public var transactionId: Swift.String
+  @objc public var amount: Swift.String
+  @objc public var productInfo: Swift.String
+  @objc public var firstName: Swift.String
+  @objc public var email: Swift.String
+  @objc public var phone: Swift.String
+  @objc public var surl: Swift.String
+  @objc public var furl: Swift.String
+  @objc public var partnerWebhookFailure: Swift.String?
+  @objc public var partnerWebhookSuccess: Swift.String?
+  @objc public var userCredential: Swift.String?
+  @objc public var additionalParam: [Swift.String : Any]
+  @objc public var cardTokenType: Swift.String?
+  @objc public var udfs: PayU3DS2Kit.PayU3DS2UserDefines?
+  @objc public var cardinfo: PayU3DS2Kit.PayU3DS2CardInfo?
+  @objc public var isPreAuthTxn: Swift.Bool
+  @objc public var threeDS2Params: PayU3DS2Kit.PayU3DS2Params?
+  @objc public var termUrl: Swift.String?
+  @objc public var authOnly: Swift.Bool
+  @objc public var pgCode: Swift.String?
+  @objc public var bankCode: Swift.String?
+  @objc public var siParam: PayU3DS2Kit.PayU3DS2SIParams?
+  @objc public var encryptData: Swift.Bool
+  @objc public init(key: Swift.String, transactionId: Swift.String, amount: Swift.String, productInfo: Swift.String, firstName: Swift.String, email: Swift.String, phone: Swift.String = "", surl: Swift.String, furl: Swift.String)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2UserDefines : ObjectiveC.NSObject {
+  @objc public var udf1: Swift.String?
+  @objc public var udf2: Swift.String?
+  @objc public var udf3: Swift.String?
+  @objc public var udf4: Swift.String?
+  @objc public var udf5: Swift.String?
+  @objc public var udf6: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class PayU3DS2CardInfo : ObjectiveC.NSObject {
+  @objc public var cardName: Swift.String?
+  @objc public var cardAlias: Swift.String?
+  @objc public var cardNumber: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var expiryMonth: Swift.String?
+  @objc public var expiryYear: Swift.String?
+  @objc public var cvv: Swift.String?
+  @objc public var cardToken: Swift.String?
+  @objc public var networkToken: Swift.String?
+  @objc public var cardScheme: PayU3DS2Kit.PayU3DS2CardScheme
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class PayU3DS2UICustomisation : ObjectiveC.NSObject, Swift.Codable {
+  @objc public init(buttonCustomisation: PayU3DS2Kit.PayU3DS2ButtonCustomisation? = nil, labelCustomisation: PayU3DS2Kit.PayU3DS2LabelCustomisation? = nil, textBoxCustomisation: PayU3DS2Kit.PayU3DS2TextBoxCustomisation? = nil, toolbarCustomisation: PayU3DS2Kit.PayU3DS2ToolBarCustomisation? = nil, fontFamilyCustomisation: PayU3DS2Kit.PayU3DS2FontFamilyCustomisation? = nil)
+  @objc public init(buttonCustomisation: PayU3DS2Kit.PayU3DS2ButtonCustomisation? = nil, labelCustomisation: PayU3DS2Kit.PayU3DS2LabelCustomisation? = nil, textBoxCustomisation: PayU3DS2Kit.PayU3DS2TextBoxCustomisation? = nil, toolbarCustomisation: PayU3DS2Kit.PayU3DS2ToolBarCustomisation? = nil, fontFamilyCustomisation: PayU3DS2Kit.PayU3DS2FontFamilyCustomisation? = nil, textCustomisation: PayU3DS2Kit.PayU3DS2TextCustomisation? = nil)
+  required public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@objc public class PayU3DS2Params : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var sdkInfo: PayU3DS2Kit.PayU3DS2SDKInfo
+  @objc public var deviceChannel: Swift.String, threeDSVersion: Swift.String
+  @objc public init(sdkInfo: PayU3DS2Kit.PayU3DS2SDKInfo, deviceChannel: Swift.String, threeDSVersion: Swift.String)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class PayU3DS2SDKInfo : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var sdkEncData: Swift.String, sdkAppID: Swift.String, sdkReferenceNumber: Swift.String, sdkTransID: Swift.String
+  @objc public var sdkMaxTimeout: Swift.String
+  @objc public var deviceRenderOptions: PayU3DS2Kit.PayU3DS2DeviceRenderOptions
+  @objc public var sdkEphemPubKey: PayU3DS2Kit.PayU3DS2SDKEphemPubKey
+  @objc public init(sdkEncData: Swift.String, sdkAppID: Swift.String, sdkReferenceNumber: Swift.String, sdkTransID: Swift.String, sdkMaxTimeout: Swift.String, deviceRenderOptions: PayU3DS2Kit.PayU3DS2DeviceRenderOptions, sdkEphemPubKey: PayU3DS2Kit.PayU3DS2SDKEphemPubKey)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class PayU3DS2DeviceRenderOptions : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var sdkInterface: Swift.String
+  @objc public var sdkUIType: [Swift.String]
+  @objc public init(sdkInterface: Swift.String, sdkUIType: [Swift.String])
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class PayU3DS2SDKEphemPubKey : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var crv: Swift.String, kty: Swift.String, x: Swift.String, y: Swift.String
+  @objc public init(crv: Swift.String, kty: Swift.String, x: Swift.String, y: Swift.String)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public enum PayUCurrency : Swift.Int {
+  case inr
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension PayU3DS2Kit.PayU3DS2BillingCycle : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2BillingCycle : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2BillingCycle : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2ButtonTextCaseType : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2ButtonTextCaseType : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2ButtonTextCaseType : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2DeviceSeverity : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2DeviceSeverity : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2DeviceSeverity : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2CardScheme : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2CardScheme : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2CardScheme : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2MFARequestType : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2MFARequestType : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2MFARequestType : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2MFAStatus : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2MFAStatus : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2MFAStatus : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayU3DS2ACSActionType : Swift.Equatable {}
+extension PayU3DS2Kit.PayU3DS2ACSActionType : Swift.Hashable {}
+extension PayU3DS2Kit.PayU3DS2ACSActionType : Swift.RawRepresentable {}
+extension PayU3DS2Kit.PayUCurrency : Swift.Equatable {}
+extension PayU3DS2Kit.PayUCurrency : Swift.Hashable {}
+extension PayU3DS2Kit.PayUCurrency : Swift.RawRepresentable {}
